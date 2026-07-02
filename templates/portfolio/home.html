@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+<h1>
+{% if profile %}
+{{ profile.full_name }}
+{% else %}
+Your Name
+{% endif %}
+</h1>
+
+<h2>
+{% if profile %}
+{{ profile.title }}
+{% endif %}
+</h2>
+
+<p>
+{% if profile %}
+{{ profile.bio }}
+{% endif %}
+</p>
+
+<a href="#">Download Resume</a>
+
+</section>
+
+{% endblock %}

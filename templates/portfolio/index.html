@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-text">
+
+        <span class="greeting">Hello, I'm</span>
+
+        <h1>{{ about.full_name }}</h1>
+
+        <h2>{{ about.profession }}</h2>
+
+        <p>{{ about.bio }}</p>
+
+        <div class="hero-buttons">
+
+            <a href="#projects" class="btn">
+                View Projects
+            </a>
+
+            <a href="#contact" class="btn btn-outline">
+                Hire Me
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-image">
+
+        {% if about.image %}
+        <img src="{{ about.image.url }}" alt="{{ about.full_name }}">
+        {% endif %}
+
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+
+    <h2 class="section-title">About Me</h2>
+
+    <p>
+        {{ about.bio }}
+    </p>
+
+</section>
+<!-- SKILLS -->
+<section id="skills" class="section">
+
+    <h2 class="section-title">Skills</h2>
+
+    <div class="cards">
+
+        {% for skill in skills %}
+
+        <div class="card">
+
+            <h3>{{ skill.name }}</h3>
+
+            <div class="progress">
+
+                <div class="progress-bar"
+                     style="width: {{ skill.percentage }}%;">
+
+                    {{ skill.percentage }}%
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <p>No skills added yet.</p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+<!-- PROJECTS -->
+<section id="projects" class="section">
+
+    <h2 class="section-title">Projects</h2>
+
+    <div class="cards">
+
+        {% for project in projects %}
+
+        <div class="card">
+
+            {% if project.image %}
+                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+            {% endif %}
+
+            <h3>{{ project.title }}</h3>
+
+            <p>{{ project.description }}</p>
+
+            <div class="project-links">
+
+                {% if project.github %}
+                    <a href="{{ project.github }}" target="_blank" class="btn">
+                        GitHub
+                    </a>
+                {% endif %}
+
+                {% if project.live_demo %}
+                    <a href="{{ project.live_demo }}" target="_blank" class="btn btn-outline">
+                        Live Demo
+                    </a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <p>No projects added yet.</p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+
+<!-- CERTIFICATES -->
+<section id="certificates" class="section">
+
+    <h2 class="section-title">Certificates</h2>
+
+    <div class="cards">
+
+        {% for certificate in certificates %}
+
+        <div class="card">
+
+            <h3>{{ certificate.title }}</h3>
+
+        </div>
+
+        {% empty %}
+
+        <p>No certificates yet.</p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="section">
+
+    <h2 class="section-title">Blog</h2>
+
+    <div class="cards">
+
+        {% for blog in blogs %}
+
+        <div class="card">
+
+            <h3>{{ blog.title }}</h3>
+
+        </div>
+
+        {% empty %}
+
+        <p>No blog posts yet.</p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+
+    <h2 class="section-title">Contact</h2>
+
+    <p>Email: your@email.com</p>
+
+    <p>GitHub: github.com/yourusername</p>
+
+    <p>LinkedIn: linkedin.com/in/yourusername</p>
+
+</section>
+
+{% endblock %}
